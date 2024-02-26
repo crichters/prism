@@ -1,6 +1,9 @@
+// System Includes
 #include <stdio.h>
 #include <stdarg.h>
 
+// Local Lib Includes
+#include <GLFW/glfw3.h>
 
 // Error Logging function, 
 // prints to stderr
