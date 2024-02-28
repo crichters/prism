@@ -22,6 +22,13 @@ int main(int argc, char *argv[])
         return -1;
     }
 
+    while(!get_window_close_flag(prism_window)) {
+        process_input(prism_window);
+
+        invoke_swap_chain(prism_window);
+        poll_window_events(prism_window);
+    }
+
     terminate_window_engine();
     return 0;
 }
