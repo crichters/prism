@@ -25,6 +25,9 @@ int main(int argc, char *argv[])
     while(!get_window_close_flag(prism_window)) {
         process_input(prism_window);
 
+        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+
         invoke_swap_chain(prism_window);
         poll_window_events(prism_window);
     }

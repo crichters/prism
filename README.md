@@ -1,2 +1,2 @@
 # prism
-Toy openGL Rendering Engine written in C
+Toy Rendering Engine written in C
