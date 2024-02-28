@@ -3,18 +3,22 @@ BUILD_DIR=./build
 
 IFLAGS=-I ./extern/include -I ./include
 LFLAGS=-L ./extern/lib
-LIBS=-l glfw3 -lm
+# LIBS=-l glfw3 -lm
+VULKAN_LIBS=-lglfw3 -lvulkan -lm
 
 # If Opengl/GLFW
-PRISM_OBJS=prism_util.o glad.o gl_window_api.o
+# PRISM_OBJS=prism_util.o glad.o gl_window_api.o
 
 # if Vulkan/GLFW
-# PRISM_OBJS=prism_util.o vulkan_window_api.o
+PRISM_OBJS=prism_util.o vulkan_window_api.o
 
 BUILD_OBJS=$(addprefix ${BUILD_DIR}/,$(PRISM_OBJS))
 
+# prism: ./src/main.c ${BUILD_OBJS} 
+#	${CC} $^ -o ${BUILD_DIR}/$@ ${IFLAGS} ${LFLAGS} ${LIBS}
+
 prism: ./src/main.c ${BUILD_OBJS} 
-	${CC} $^ -o ${BUILD_DIR}/$@ ${IFLAGS} ${LFLAGS} ${LIBS}
+	${CC} $^ -o ${BUILD_DIR}/$@ ${IFLAGS} ${LFLAGS} ${VULKAN_LIBS}
 
 ${BUILD_DIR}/prism_util.o: ./src/prism_utils/util.c
 	${CC} -c $^ -o $@ ${IFLAGS}
