@@ -5,9 +5,15 @@
 #include <GLFW/glfw3.h>
 #include <prism_util.h>
 
+#include <vulkan_management.h>
+
+struct VulkanConfig {
+    VkInstance instance;
+};
+
 void init_glfw();
 void init_vulkan();
 
-VkInstance vulkan_instance;
+struct VulkanConfig vulkan_config;
 
 #endif // !GLFW_VULKAN_API_H

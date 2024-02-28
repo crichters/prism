@@ -10,7 +10,7 @@ VULKAN_LIBS=-lglfw3 -lvulkan -lm
 # PRISM_OBJS=prism_util.o glad.o gl_window_api.o
 
 # if Vulkan/GLFW
-PRISM_OBJS=prism_util.o vulkan_window_api.o
+PRISM_OBJS=prism_util.o vulkan_window_api.o vulkan_management.o
 
 BUILD_OBJS=$(addprefix ${BUILD_DIR}/,$(PRISM_OBJS))
 
@@ -32,7 +32,8 @@ ${BUILD_DIR}/vulkan_window_api.o: ./src/glfw_window_api/vulkan_window_api.c
 ${BUILD_DIR}/gl_window_api.o: ./src/glfw_window_api/gl_window.c
 	${CC} -c $^ -o $@ ${IFLAGS}
 
-
+${BUILD_DIR}/vulkan_management.o: ./src/glfw_window_api/vulkan_management.c
+	${CC} -c $^ -o $@ ${IFLAGS}
 
 compile_commands:
 	bear -- make && mv compile_commands.json ./build

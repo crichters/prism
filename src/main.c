@@ -11,7 +11,6 @@
 
 int main(int argc, char *argv[])
 {
-
     struct PrismWindow prism_window;
 
     initialize_window_engine();
