@@ -9,11 +9,16 @@
 
 struct VulkanConfig {
     VkInstance instance;
+    VkPhysicalDevice physical_device;
 };
 
 void init_glfw();
-void init_vulkan();
 
-struct VulkanConfig vulkan_config;
+void init_vulkan(struct VulkanConfig vk_config);
+
+struct VulkanConfig vulkan_config = {
+    NULL,
+    VK_NULL_HANDLE
+};
 
 #endif // !GLFW_VULKAN_API_H

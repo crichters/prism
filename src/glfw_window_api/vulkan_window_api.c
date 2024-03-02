@@ -31,42 +31,29 @@ int create_prism_window(
     return 0;
 }
 
-//void init_vulkan() {
-//    VkApplicationInfo app_info = {};
-//    app_info.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
-//    app_info.pApplicationName = "Hello Triangle";
-//    app_info.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
-//    app_info.pEngineName = "No Engine";
-//    app_info.engineVersion = VK_MAKE_VERSION(1, 0, 0);
-//    app_info.apiVersion = VK_API_VERSION_1_0;
-//
-//    VkInstanceCreateInfo create_info = {};
-//    create_info.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
-//    create_info.pApplicationInfo = &app_info;
-//
-//    uint32_t glfw_extension_count = 0;
-//    
-//    // Watch for Mem Safety
-//    const char** glfw_extensions;
-//
-//    glfw_extensions = glfwGetRequiredInstanceExtensions(&glfw_extension_count);
-//
-//    create_info.enabledExtensionCount = glfw_extension_count;
-//    create_info.ppEnabledExtensionNames = glfw_extensions;
-//    create_info.enabledLayerCount = 0;
-//    
-//    VkResult result = vkCreateInstance(&create_info, NULL, &vulkan_instance);
-//
-//    if(result != VK_SUCCESS) {
-//        log_error("Error, unable to initialize Vulkan Instance\n");
-//    }
-//}
 
 void initialize_window_engine() {
-   init_glfw();
-   int vk_instance_success = create_vk_instance(&vulkan_config.instance);
-//   init_vulkan();
+    init_glfw();
+    init_vulkan(vulkan_config);
 }
+
+void init_vulkan(struct VulkanConfig vk_config) {
+    int vk_instance_success = create_vk_instance(&vk_config.instance);
+
+    if(0 != vk_instance_success) {
+        return;
+    }
+
+    int vk_physical_success = create_vk_physical_device(
+        &vk_config.physical_device, 
+        vk_config.instance
+    );
+
+    if(0 != vk_physical_success) {
+        return;
+    }
+}
+
 
 void terminate_window_engine() {
     vkDestroyInstance(vulkan_config.instance, NULL);

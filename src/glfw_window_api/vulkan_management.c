@@ -33,3 +33,20 @@ int create_vk_instance(VkInstance *vulkan_instance) {
     }
 
 }
+
+int create_vk_physical_device(VkPhysicalDevice *vk_device, VkInstance vk_instance) {
+    uint32_t device_count = 0;
+    vkEnumeratePhysicalDevices(vk_instance, &device_count, NULL);
+
+    if(device_count==0) {
+        log_error("Error: Unable to find GPU with Vulkan Support\n");
+        return -1;
+    }
+    
+    VkPhysicalDevice *vk_devices = (VkPhysicalDevice*) malloc(
+        device_count * sizeof(VkPhysicalDevice)
+    );
+
+    free(vk_devices);  
+    return 0;
+}

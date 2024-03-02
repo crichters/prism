@@ -6,7 +6,7 @@
 #include<prism_util.h>
 
 int create_vk_instance(VkInstance *vulkan_instance);
-
+int create_vk_physical_device(VkPhysicalDevice *vk_device, VkInstance vk_instance);
 VkPhysicalDevice pick_vk_physical_device();
 
 
